@@ -12,17 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Controller
 public class TodoController {
 
     private TodoService todoService;
-    private boolean toggle;
+    private boolean toggle = false;
 
     @Autowired
     public TodoController(TodoService todoService) {
         this.todoService = todoService;
-        this.toggle = false;
     }
 
     @GetMapping("/")
@@ -49,13 +47,16 @@ public class TodoController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Todo todo, Model model) {
-        Todo newTodo = todoService.save(todo);
-        if(newTodo != null) {
-            return "redirect:/";
-        } else {
-            model.addAttribute("todo", todo);
-            return "view/todos";
+        if(todo.getTodoText() != "") {
+            Todo newTodo = todoService.save(todo);
+            if(newTodo != null) {
+                return "redirect:/";
+            } else {
+                model.addAttribute("todo", todo);
+                return "view/todos";
+            }
         }
+        return "redirect:/";
     }
 
     @GetMapping("/deleteTodo/{id}")
