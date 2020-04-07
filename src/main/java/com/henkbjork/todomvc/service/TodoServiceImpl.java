@@ -5,7 +5,6 @@ import com.henkbjork.todomvc.repository.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -13,8 +12,12 @@ import java.util.Optional;
 @Transactional
 public class TodoServiceImpl implements TodoService {
 
-    @Autowired
     private TodoRepository todoRepository;
+
+    @Autowired
+    public TodoServiceImpl(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
 
     @Override
     public List<Todo> getAllTodos() {

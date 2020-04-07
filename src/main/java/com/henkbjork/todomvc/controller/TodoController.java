@@ -16,7 +16,6 @@ import java.util.List;
 @Controller
 public class TodoController {
 
-
     private TodoService todoService;
     private boolean toggle;
 
@@ -29,10 +28,23 @@ public class TodoController {
     @GetMapping("/")
     public String todoList(Model model) {
         List<Todo> todos = todoService.getAllTodos();
+        int size = unChecked();
+        model.addAttribute("unCheckedTodos", size);
         model.addAttribute("todos", todos);
         model.addAttribute("todo", new Todo());
         model.addAttribute("title", "TodoMVC");
         return "view/todos";
+    }
+
+    private int unChecked() {
+        List<Todo> todos = todoService.getAllTodos();
+        List<Todo> unCheckedTodos = new ArrayList<>();
+        for (int i = 0; i < todos.size(); i++) {
+            if(!todos.get(i).isChecked()) {
+                unCheckedTodos.add(todos.get(i));
+            }
+        }
+       return unCheckedTodos.size();
     }
 
     @PostMapping("/save")
@@ -66,19 +78,21 @@ public class TodoController {
     @GetMapping("/toggleAll")
     public String toggleAllTodos(Model model) {
         List<Todo> todos = todoService.getAllTodos();
+        int size;
         if(!toggle) {
             for (int i = 0; i < todos.size(); i++) {
-                //todoService.setTodoStatus(todos.get(i).getId());
                 todoService.setTodoChecked(todos.get(i).getId());
             }
+            size = unChecked();
             toggle = true;
         } else {
             for (int i = 0; i < todos.size(); i++) {
-                //todoService.setTodoStatus(todos.get(i).getId());
                 todoService.setTodoUnchecked(todos.get(i).getId());
             }
+            size = unChecked();
             toggle = false;
         }
+        model.addAttribute("unCheckedTodos", size);
         model.addAttribute("todos", todos);
         model.addAttribute("todo", new Todo());
         model.addAttribute("title", "TodoMVC");
@@ -89,11 +103,13 @@ public class TodoController {
     public String getActiveTodos(Model model) {
         List<Todo> todos = todoService.getAllTodos();
         List<Todo> activeTodos = new ArrayList<>();
+        int size = unChecked();
         for(int i=0; i<todos.size(); i++) {
             if(!todos.get(i).isChecked()) {
                 activeTodos.add(todos.get(i));
             }
         }
+        model.addAttribute("unCheckedTodos", size);
         model.addAttribute("todos", activeTodos);
         model.addAttribute("todo", new Todo());
         model.addAttribute("title", "Active Todos");
@@ -104,11 +120,13 @@ public class TodoController {
     public String getCompletedTodos(Model model) {
         List<Todo> todos = todoService.getAllTodos();
         List<Todo> completedTodos = new ArrayList<>();
+        int size = unChecked();
         for(int i=0; i<todos.size(); i++) {
             if(todos.get(i).isChecked()) {
                 completedTodos.add(todos.get(i));
             }
         }
+        model.addAttribute("unCheckedTodos", size);
         model.addAttribute("todos", completedTodos);
         model.addAttribute("todo", new Todo());
         model.addAttribute("title", "Completed Todos");

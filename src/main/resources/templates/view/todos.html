@@ -30,7 +30,7 @@
                     </li>
                 </ul>
                 <div class="list-container">
-                    <span id="count" th:text="${todos.size() + ' items left'}">Items left</span>
+                    <span id="count" th:text="${unCheckedTodos + ' items left'}">Items left</span>
                     <ul id="nav-bar">
                         <li id="all"><a th:href="@{'/all'}">All</a></li>
                         <li id="active"><a th:href="@{'/active'}">Active</a></li>
