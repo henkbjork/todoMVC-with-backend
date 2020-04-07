@@ -66,15 +66,19 @@ public class TodoController {
     @GetMapping("/toggleAll")
     public String toggleAllTodos(Model model) {
         List<Todo> todos = todoService.getAllTodos();
-        for(int i=0; i<todos.size(); i++) {
-            if(toggle) {
-                todos.get(i).setChecked(false);
-                todoService.setTodoStatus(todos.get(i).getId());
-            } else {
-                todos.get(i).setChecked(true);
+        if(!toggle) {
+            for (int i = 0; i < todos.size(); i++) {
+                //todoService.setTodoStatus(todos.get(i).getId());
+                todoService.setTodoChecked(todos.get(i).getId());
             }
+            toggle = true;
+        } else {
+            for (int i = 0; i < todos.size(); i++) {
+                //todoService.setTodoStatus(todos.get(i).getId());
+                todoService.setTodoUnchecked(todos.get(i).getId());
+            }
+            toggle = false;
         }
-        toggle = true;
         model.addAttribute("todos", todos);
         model.addAttribute("todo", new Todo());
         model.addAttribute("title", "TodoMVC");

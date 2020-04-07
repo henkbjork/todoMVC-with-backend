@@ -16,4 +16,8 @@ public interface TodoService {
     void delete(Long id);
 
     void setTodoStatus(Long id);
+
+    void setTodoChecked(Long id);
+
+    void setTodoUnchecked(Long id);
 }

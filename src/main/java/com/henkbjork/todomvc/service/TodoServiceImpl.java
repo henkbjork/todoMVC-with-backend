@@ -58,4 +58,16 @@ public class TodoServiceImpl implements TodoService {
             todo.setChecked(true);
         }
     }
+
+    @Override
+    public void setTodoChecked(Long id) {
+        Todo todo = todoRepository.findById(id).get();
+        todo.setChecked(true);
+    }
+
+    @Override
+    public void setTodoUnchecked(Long id) {
+        Todo todo = todoRepository.findById(id).get();
+        todo.setChecked(false);
+    }
 }
