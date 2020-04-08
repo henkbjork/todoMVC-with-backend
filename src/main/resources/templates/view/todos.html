@@ -22,13 +22,15 @@
                         <button type="submit" style="display:none"></button>
                     </form>
                 </div>
-                <ul id="todo-list" th:each="todo: ${todos}">
-                    <li class="todo-item">
-                        <a th:class="${todo.checked} ? 'check checkbox' : 'uncheck checkbox'" th:id="${todo.id}" th:href="@{'/getTodo/'+${todo.id}}" style="text-decoration: none"></a>
-                        <label th:text="${todo.todoText}"></label>
-                        <a class="delete-item" th:href="@{'/deleteTodo/'+${todo.id}}" style="text-decoration: none"></a>
-                    </li>
-                </ul>
+                    <ul id="todo-list" th:each="todo: ${todos}">
+                        <form th:action="@{'/deleteTodo/'+${todo.id}}" method="post">
+                            <li class="todo-item">
+                                <a th:class="${todo.checked} ? 'check checkbox' : 'uncheck checkbox'" th:id="${todo.id}" th:href="@{'/getTodo/'+${todo.id}}" style="text-decoration: none"></a>
+                                <label th:text="${todo.todoText}"></label>
+                                <button class="delete-item"></button>
+                            </li>
+                        </form>
+                    </ul>
                 <div class="list-container">
                     <span id="count" th:text="${unCheckedTodos + ' items left'}">Items left</span>
                     <ul id="nav-bar">

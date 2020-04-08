@@ -116,6 +116,12 @@ li:hover .delete-item {
 	transition: color 0.2s ease-out;
 }
 
+#todo-list button {
+    border: none;
+    background-color: #fff;
+    margin-top: 15px;
+}
+
 li .delete-item:hover {
     color: #af5b5e;
 }
