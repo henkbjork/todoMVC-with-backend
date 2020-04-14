@@ -123,8 +123,9 @@ li .far, li .fa-edit {
 }
 
 li:hover .far, li:hover .fa-edit {
-    align-self: baseline;
+    text-decoration: none;
     margin-left: 30rem;
+    margin-top: 0.9rem;
     display: block;
     cursor: pointer;
     position: absolute;

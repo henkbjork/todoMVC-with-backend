@@ -43,8 +43,13 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public Todo update(Todo todo) {
-        return todoRepository.save(todo);
+    public Todo update(Long id) {
+        Optional<Todo> todo = todoRepository.findById(id);
+        if(todo.isPresent()) {
+            return todo.get();
+        } else {
+            return null;
+        }
     }
 
     @Override
