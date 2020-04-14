@@ -27,7 +27,8 @@
                             <li class="todo-item">
                                 <a th:class="${todo.checked} ? 'check checkbox' : 'uncheck checkbox'" th:id="${todo.id}" th:href="@{'/getTodo/'+${todo.id}}" style="text-decoration: none"></a>
                                 <label th:text="${todo.todoText}"></label>
-                                <button class="delete-item"></button>
+                                <button type="button" class="far fa-edit"></button>
+                                <button type="submit" class="delete-item"></button>
                             </li>
                         </form>
                     </ul>
@@ -44,7 +45,6 @@
                 </div>
             </section>
             <footer>
-                <p>Double click to edit a todo</p>
                 <p>Written by <a href="https://github.com/henkbjork">Henrik Björk</a></p>
                 <p>Part of<a href="http://todomvc.com/"> TodoMVC</a></p>
             </footer>

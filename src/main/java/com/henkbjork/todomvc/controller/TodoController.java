@@ -1,5 +1,6 @@
 package com.henkbjork.todomvc.controller;
 
+import com.henkbjork.todomvc.exception.TodoNotFoundException;
 import com.henkbjork.todomvc.model.Todo;
 import com.henkbjork.todomvc.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,9 +62,9 @@ public class TodoController {
 
     @PostMapping("/deleteTodo/{id}")
     public String delete(@PathVariable Long id) {
-        System.out.println("*******************************");
-        System.out.println(id);
-        System.out.println("***********************************");
+        if(true) {
+            throw new TodoNotFoundException("Ooops. Todo not found....");
+        }
         todoService.delete(id);
         return "redirect:/";
     }

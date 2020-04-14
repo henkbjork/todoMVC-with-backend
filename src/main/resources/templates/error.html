@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/b6a126cf35.js"></script>
+    <title>Error</title>
+</head>
+    <body>
+        <div class="flex-container">
+            <header class="top" id="header">
+                <h1>Ooops</h1>
+                <h3>That was not supposed to happen...</h3>
+                <a th:href="@{'/all'}">Take me back to my Todos!</a>
+            </header>
+            <footer>
+                <p>Written by <a href="https://github.com/henkbjork">Henrik Björk</a></p>
+                <p>Part of<a href="http://todomvc.com/"> TodoMVC</a></p>
+            </footer>
+        </div>
+    </body>
+</html>

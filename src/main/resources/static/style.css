@@ -21,6 +21,22 @@ header h1 {
     font-weight: 300;
     color: rgba(175, 47, 47, 0.15);
 }
+
+header h3 {
+     text-align: center;
+     font-weight: 300;
+     color: rgba(175, 47, 47, 0.15);
+ }
+
+header a {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    text-align: center;
+    font-weight: 300;
+    color: rgba(175, 47, 47, 0.15);
+}
+
 .todo-app {
     width: 35rem;
     margin: auto;
@@ -98,8 +114,23 @@ ul li label .line {
     color: rgb(214, 212, 212);
 }
 
+li .far, li .fa-edit {
+    display: none;
+}
+
 .delete-item {
     display: none;
+}
+
+li:hover .far, li:hover .fa-edit {
+    align-self: baseline;
+    margin-left: 30rem;
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    height: 40px;
+    font-size: 17px;
+    color: #4b7ecc;
 }
 
 li:hover .delete-item {
@@ -107,9 +138,7 @@ li:hover .delete-item {
     margin-left: 32rem;
     display: block;
     cursor: pointer;
-    display: block;
     position: absolute;
-	width: 40px;
 	height: 40px;
 	font-size: 30px;
 	color: #cc9a9a;
@@ -120,6 +149,10 @@ li:hover .delete-item {
     border: none;
     background-color: #fff;
     margin-top: 15px;
+}
+
+li .far:hover {
+    color: #0c1baf;
 }
 
 li .delete-item:hover {
