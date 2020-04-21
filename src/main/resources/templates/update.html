@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title th:text="${title}">Title</title>
+</head>
+    <body>
+        <div class="flex-container">
+            <header class="top" id="header">
+                <h1>update</h1>
+            </header>
+            <section class="todo-app">
+                <div id="toggle-todo">
+                    <form th:action="@{/save}" th:object="${todo}" method="post">
+                        <input type="text" id="input-text" th:field="${todo.todoText}">
+                        <input type="hidden" th:field="${todo.id}">
+                        <button type="submit" style="display:none"></button>
+                    </form>
+                </div>
+            </section>
+            <footer>
+                <p>Written by <a href="https://github.com/henkbjork">Henrik Björk</a></p>
+                <p>Part of<a href="http://todomvc.com/"> TodoMVC</a></p>
+            </footer>
+        </div>
+    </body>
+</html>

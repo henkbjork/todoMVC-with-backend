@@ -5,10 +5,7 @@ import com.henkbjork.todomvc.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +28,7 @@ public class TodoController {
         model.addAttribute("todos", todos);
         model.addAttribute("todo", new Todo());
         model.addAttribute("title", "TodoMVC");
-        return "view/todos";
+        return "todos";
     }
 
     private int unChecked() {
@@ -53,7 +50,7 @@ public class TodoController {
                 return "redirect:/";
             } else {
                 model.addAttribute("todo", todo);
-                return "view/todos";
+                return "todos";
             }
         }
         return "redirect:/";
@@ -66,11 +63,11 @@ public class TodoController {
     }
 
     @GetMapping("/updateTodo/{id}")
-    public String update(@PathVariable Long id, Model model) {
-        Todo todo = todoService.update(id);
+    public String getUpdatePage(@PathVariable Long id, Model model) {
+        Todo todo = todoService.findById(id);
         model.addAttribute("todo", todo);
         model.addAttribute("title", "Update Todo");
-        return "view/todos";
+        return "update";
     }
 
     @GetMapping("/getTodo/{id}")
@@ -105,7 +102,7 @@ public class TodoController {
         model.addAttribute("todos", todos);
         model.addAttribute("todo", new Todo());
         model.addAttribute("title", "TodoMVC");
-        return "view/todos";
+        return "todos";
     }
 
     @GetMapping("/active")
@@ -122,7 +119,7 @@ public class TodoController {
         model.addAttribute("todos", activeTodos);
         model.addAttribute("todo", new Todo());
         model.addAttribute("title", "Active Todos");
-        return "view/todos";
+        return "todos";
     }
 
     @GetMapping("/completed")
@@ -139,7 +136,7 @@ public class TodoController {
         model.addAttribute("todos", completedTodos);
         model.addAttribute("todo", new Todo());
         model.addAttribute("title", "Completed Todos");
-        return "view/todos";
+        return "todos";
     }
 
     @PostMapping("/clearCompleted")

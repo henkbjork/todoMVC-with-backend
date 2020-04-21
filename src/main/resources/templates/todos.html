@@ -27,7 +27,7 @@
                             <li class="todo-item">
                                 <a th:class="${todo.checked} ? 'check checkbox' : 'uncheck checkbox'" th:id="${todo.id}" th:href="@{'/getTodo/'+${todo.id}}" style="text-decoration: none"></a>
                                 <label th:text="${todo.todoText}"></label>
-                                <a class="far fa-edit" th:href="@{'/updateTodo/' + ${todo.id}}"></a>
+                                <a class="far fa-edit" th:id="${todo.id}" th:href="@{'/updateTodo/'+${todo.id}}"></a>
                                 <button type="submit" class="delete-item"></button>
                             </li>
                         </form>
