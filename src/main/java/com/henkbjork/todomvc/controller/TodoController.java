@@ -70,6 +70,20 @@ public class TodoController {
         return "update";
     }
 
+    @PostMapping("/update")
+    public String updateTodo(@ModelAttribute Todo todo, Model model) {
+        if(todo.getTodoText() != "") {
+            Todo newTodo = todoService.save(todo);
+            if(newTodo != null) {
+                return "redirect:/";
+            } else {
+                model.addAttribute("todo", todo);
+                return "todos";
+            }
+        }
+        return "redirect:/";
+    }
+
     @GetMapping("/getTodo/{id}")
     public String setCheckStatus(@PathVariable Long id) {
         todoService.setTodoStatus(id);
