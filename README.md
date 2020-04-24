@@ -1,3 +1,3 @@
 # todoMVC-with-backend
 
-A todo app written spring boot, mysql and thymeleaf
+A todo app written with spring boot, mysql and thymeleaf
